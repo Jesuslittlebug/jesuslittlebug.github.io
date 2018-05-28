@@ -9,7 +9,7 @@ tags: 设计模式
 
 ## 饿汉式-线程安全
 实例在类加载的时候就进行了初始化，无论使用还是不使用，一直占用内存直至类被卸载。适用于单例占用内存小且初始化时间短的情况下。
-```
+```java
 public class Singleton {
 	private final static Singleton INSTANCE = new Singleton();
 	private Singleton(){
@@ -26,7 +26,7 @@ public class Singleton {
 ## 懒汉式
 ### 实现一：线程非安全
 在单线程中是没问题的，但多线程中就会重复的实例化。
-```
+```java
 public class Singleton {
 
 	private static Singleton INSTANCE;
@@ -45,7 +45,7 @@ public class Singleton {
 ```
 ### 实现二： 线程安全
 相较于实现一是线程安全的，但是synchronized同步的是整个方法，这会使得高并发的情况下，效率变低。
-```
+```java
 public class Singleton {
 
 	private static Singleton INSTANCE;
@@ -84,7 +84,7 @@ public class Singleton {
 | T6 |访问INSTANCE引用的对象|-|   
 
 
-```
+```java
 public class Singleton {
 
 	//volatile保证了多线程间变量的可见性
@@ -109,7 +109,7 @@ public class Singleton {
 ```
 ## 静态内部类-线程安全
 将对象的实例化放到静态内部类中，这样由于静态内部类只会被加载一次，因此这种方法也是线程安全的。
-```
+```java
 public class Singleton {
 	private Singleton(){
 		
@@ -126,7 +126,7 @@ public class Singleton {
 ```
 ## 枚举方式
 枚举方式能够抵御反射、克隆以及序列化对单例的破坏。其他的实现方式需要添加额外的判断代码。
-```
+```java
 public enum Singleton {
 
 	INSTANCE;
